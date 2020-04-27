@@ -52662,6 +52662,8 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -52684,10 +52686,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+  data: function data() {
+    return {
+      posts: {
+        title: '',
+        description: ''
+      },
+      errors: []
+    };
+  },
+
+  methods: {
+    submitPost: function submitPost() {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/posts', this.posts).then(function (response) {
+        console.log(response);
+        _this.$router.push({ path: '/' });
+        _this.posts = response.data;
+      }).catch(function (e) {
+        _this.errors.push(e);
+      });
     }
+  }
 });
 
 /***/ }),
@@ -52705,10 +52729,61 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c(
           "form",
+          {
+            on: {
+              submit: function($event) {
+                return _vm.submitPost()
+              }
+            }
+          },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.posts.title,
+                    expression: "posts.title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Title..." },
+                domProps: { value: _vm.posts.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.posts, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "form-group" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.posts.description,
+                    expression: "posts.description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { rows: "5", placeholder: "Description..." },
+                domProps: { value: _vm.posts.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.posts, "description", $event.target.value)
+                  }
+                }
+              })
+            ]),
             _vm._v(" "),
             _c(
               "router-link",
@@ -52724,30 +52799,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "", placeholder: "Title..." }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { rows: "5", name: "", placeholder: "Description..." }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
