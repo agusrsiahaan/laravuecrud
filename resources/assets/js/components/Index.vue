@@ -15,9 +15,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
+                <tr v-for="post of posts">
+                    <td>{{post.title}}</td>
+                    <td>{{post.description}}</td>
                     <td><button class="btn btn-info"><i class="fa fa-eye"></i> View</button></td>
                     <td><button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                     <td><button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
@@ -28,3 +28,26 @@
         </div>
     </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      posts: [],
+      errors: []
+    }
+  },
+
+    created() {
+        axios.get('/posts')
+        .then(response => {
+            this.posts = response.data
+        })
+            .catch(e => {
+            this.errors.push(e)
+        })
+    }
+}
+</script>

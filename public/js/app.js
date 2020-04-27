@@ -52482,7 +52482,7 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(41)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(54)
 /* template */
 var __vue_template__ = __webpack_require__(51)
 /* template functional */
@@ -52591,7 +52591,29 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "card-body" }, [
+      _c("table", { staticClass: "table table-bordered" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.posts, function(post) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(post.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(post.description))]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true)
+            ])
+          }),
+          0
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -52599,50 +52621,50 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("table", { staticClass: "table table-bordered" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("Title")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Description")]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "110" } }),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "100" } }),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "120" } })
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Title")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("John")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Doe")]),
-            _vm._v(" "),
-            _c("td", [
-              _c("button", { staticClass: "btn btn-info" }, [
-                _c("i", { staticClass: "fa fa-eye" }),
-                _vm._v(" View")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("button", { staticClass: "btn btn-warning" }, [
-                _c("i", { staticClass: "fa fa-pencil-square-o" }),
-                _vm._v(" Edit")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("button", { staticClass: "btn btn-danger" }, [
-                _c("i", { staticClass: "fa fa-trash" }),
-                _vm._v(" Delete")
-              ])
-            ])
-          ])
-        ])
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "110" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "100" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "120" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-info" }, [
+        _c("i", { staticClass: "fa fa-eye" }),
+        _vm._v(" View")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-warning" }, [
+        _c("i", { staticClass: "fa fa-pencil-square-o" }),
+        _vm._v(" Edit")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-danger" }, [
+        _c("i", { staticClass: "fa fa-trash" }),
+        _vm._v(" Delete")
       ])
     ])
   }
@@ -52808,6 +52830,66 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-0e5f501a", module.exports)
   }
 }
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            posts: [],
+            errors: []
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/posts').then(function (response) {
+            _this.posts = response.data;
+        }).catch(function (e) {
+            _this.errors.push(e);
+        });
+    }
+});
 
 /***/ })
 /******/ ]);
