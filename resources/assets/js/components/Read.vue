@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <h2>{{posts.title}}</h2>
-            <p>{{posts.description}}</p>
+            <p class="show">{{posts.description}}</p>
         </div>
     </div>
 </template>

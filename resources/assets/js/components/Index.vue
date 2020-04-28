@@ -19,11 +19,14 @@
                     <td>{{post.title}}</td>
                     <td>{{post.description}}</td>
                     <td>
-                        <router-link :to="{name: 'readPost', params:{id:post.id}}" class="btn-btn-info"><i class="fa fa-eye"> View</i>
+                        <router-link :to="{name: 'readPost', params:{id:post.id}}" class="btn-btn-info"><i class="fa fa-eye"></i> View
                         </router-link>
                      
                     </td>
-                    <td><button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
+                    <td>
+                        <router-link :to="{name: 'editPost', params:{id:post.id}}" class="btn-btn-warning"><i class="fa fa-pencil-square-o"></i> Edit
+                        </router-link>
+                        </td>
                     <td><button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                 </tr>
              
