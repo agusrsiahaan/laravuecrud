@@ -15,7 +15,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="post of posts">
+                <tr v-for="post, index in posts">
                     <td>{{post.title}}</td>
                     <td>{{post.description}}</td>
                     <td>
@@ -27,7 +27,7 @@
                         <router-link :to="{name: 'editPost', params:{id:post.id}}" class="btn-btn-warning"><i class="fa fa-pencil-square-o"></i> Edit
                         </router-link>
                         </td>
-                    <td><button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                    <td><button class="btn btn-danger" v-on:click="submitPostDelete(post.id, index)"><i class="fa fa-trash"></i> Delete</button></td>
                 </tr>
              
                 </tbody>
@@ -55,6 +55,20 @@ export default {
             .catch(e => {
             this.errors.push(e)
         })
+    },
+    methods:{
+        submitPostDelete(id, index) {
+            if (confirm("Click 'Ok' to delete.")){
+            axios.delete('/posts/' + id)
+            .then(response => {
+                console.log(response)
+                this.posts.splice(index, 1);
+            })
+                .catch(e => {
+                this.errors.push(e)
+            })
+            }
+        }
     }
 }
 </script>
